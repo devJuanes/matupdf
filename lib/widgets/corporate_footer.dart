@@ -117,7 +117,7 @@ class _BrandColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const MatuLogo(size: 36),
+        const MatuLogo(height: 40),
         const SizedBox(height: 16),
         Text(
           AppConstants.appDescription,

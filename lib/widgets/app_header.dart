@@ -79,7 +79,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
                       ),
                       const SizedBox(width: 4),
                     ],
-                    const MatuLogo(size: 32),
+                    const MatuLogo(height: 36),
                     if (variant == AppHeaderVariant.workspace) ...[
                       const SizedBox(width: 16),
                       Container(
