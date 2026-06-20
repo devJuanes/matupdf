@@ -9,6 +9,7 @@ import '../../../../theme/app_colors.dart';
 import '../../../../widgets/app_button.dart';
 import '../../../../widgets/app_card.dart';
 import '../../../../widgets/app_header.dart';
+import '../widgets/merge_history_panel.dart';
 import '../controllers/auth_controller.dart';
 
 class AuthPage extends StatefulWidget {
@@ -65,6 +66,7 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
     if (auth.isAuthenticated) {
       return _AuthenticatedView(
         userName: auth.user!.displayName,
+        userId: auth.user!.id,
         onContinue: () => _goAfterAuth(context),
       );
     }
@@ -209,10 +211,12 @@ class _AuthPageState extends State<AuthPage> with SingleTickerProviderStateMixin
 class _AuthenticatedView extends StatelessWidget {
   const _AuthenticatedView({
     required this.userName,
+    required this.userId,
     required this.onContinue,
   });
 
   final String userName;
+  final String userId;
   final VoidCallback onContinue;
 
   @override
@@ -224,51 +228,89 @@ class _AuthenticatedView extends StatelessWidget {
       backgroundColor:
           isDark ? AppColors.backgroundDark : AppColors.backgroundLight,
       appBar: AppHeader(onBack: () => context.go(AppRoutes.home)),
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 420),
-          child: AppCard(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.verified_user_rounded, size: 48, color: AppColors.success),
-                const SizedBox(height: 16),
-                Text(
-                  '¡Hola, $userName!',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
+      body: SingleChildScrollView(
+        child: ContentContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 32),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 640),
+                child: AppCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 22,
+                            backgroundColor:
+                                AppColors.primary.withValues(alpha: 0.12),
+                            child: Text(
+                              userName.characters.first.toUpperCase(),
+                              style: const TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 14),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '¡Hola, $userName!',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  auth.user?.email ?? '',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                        color: isDark
+                                            ? AppColors.textSecondaryDark
+                                            : AppColors.textSecondaryLight,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Sesión activa. Tus combinaciones y descargas quedan '
-                  'registradas en tu cuenta.',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                if (auth.isSessionExpired) ...[
-                  const SizedBox(height: 12),
-                  _InfoBanner(
-                    icon: Icons.info_outline,
-                    text:
-                        'Tu sesión expiró. Si algo falla, cierra sesión e ingresa de nuevo.',
-                    color: AppColors.warning,
+                      if (auth.isSessionExpired) ...[
+                        const SizedBox(height: 16),
+                        _InfoBanner(
+                          icon: Icons.info_outline,
+                          text:
+                              'Tu sesión expiró. Si algo falla, cierra sesión e ingresa de nuevo.',
+                          color: AppColors.warning,
+                        ),
+                      ],
+                      const SizedBox(height: 28),
+                      const Divider(),
+                      const SizedBox(height: 20),
+                      MergeHistoryPanel(userId: userId),
+                      const SizedBox(height: 28),
+                      AppButton(
+                        label: 'Ir a combinar PDFs',
+                        icon: Icons.merge_type_rounded,
+                        compact: true,
+                        isExpanded: true,
+                        onPressed: onContinue,
+                      ),
+                      const SizedBox(height: 8),
+                      TextButton(
+                        onPressed: auth.signOut,
+                        child: const Text('Cerrar sesión'),
+                      ),
+                    ],
                   ),
-                ],
-                const SizedBox(height: 24),
-                AppButton(
-                  label: 'Continuar',
-                  icon: Icons.arrow_forward_rounded,
-                  compact: true,
-                  isExpanded: true,
-                  onPressed: onContinue,
                 ),
-                const SizedBox(height: 12),
-                TextButton(
-                  onPressed: auth.signOut,
-                  child: const Text('Cerrar sesión'),
-                ),
-              ],
+              ),
             ),
           ),
         ),

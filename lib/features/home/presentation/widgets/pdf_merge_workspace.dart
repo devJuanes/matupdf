@@ -11,7 +11,7 @@ import '../../data/models/pdf_file_item.dart';
 import '../controllers/merge_controller.dart';
 import '../../../auth/presentation/controllers/auth_controller.dart';
 import '../../../auth/presentation/widgets/merge_auth_gate_dialog.dart';
-import '../../../contact/data/contact_repository.dart';
+import '../../data/merge_history_repository.dart';
 import 'file_upload_overlay.dart';
 import 'merge_progress_dialog.dart';
 import 'pdf_merge_toolbar.dart';
@@ -161,10 +161,11 @@ class _PdfMergeWorkspaceState extends State<PdfMergeWorkspace> {
     if (!mounted) return;
     if (mergeController.mergedOutputPath != null &&
         mergeController.errorMessage == null) {
-      await DownloadLogger().logMerge(
+      await MergeHistoryRepository().logMerge(
         auth: auth,
         fileCount: mergeController.files.length,
         fileNames: mergeController.files.map((f) => f.name).toList(),
+        outputPath: mergeController.mergedOutputPath!,
       );
     }
   }

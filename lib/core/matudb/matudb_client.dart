@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'matudb_config.dart';
 import 'matudb_result.dart';
+import 'matudb_storage.dart';
 
 class MatuDbSession {
   const MatuDbSession({
@@ -64,11 +65,13 @@ class MatuDbUser {
 }
 
 class MatuDbClient {
-  MatuDbClient({
-    String? accessToken,
-  }) : _accessToken = accessToken;
+  MatuDbClient({String? accessToken})
+      : _accessToken = accessToken,
+        storage = MatuDbStorage(accessToken: accessToken);
 
   String? _accessToken;
+
+  final MatuDbStorage storage;
 
   String get _authBase =>
       '${MatuDbConfig.url}/api/projects/${MatuDbConfig.projectId}/auth';
@@ -87,7 +90,10 @@ class MatuDbClient {
     return headers;
   }
 
-  void setAccessToken(String? token) => _accessToken = token;
+  void setAccessToken(String? token) {
+    _accessToken = token;
+    storage.setAccessToken(token);
+  }
 
   Future<MatuDbResult<MatuDbSession>> signUp({
     required String email,
@@ -111,7 +117,7 @@ class MatuDbClient {
 
       return _parseAuthResponse(response);
     } catch (e) {
-      return MatuDbResult(error: e.toString());
+      return MatuDbResult(error: _friendlyError(e));
     }
   }
 
@@ -135,7 +141,7 @@ class MatuDbClient {
 
       return _parseAuthResponse(response);
     } catch (e) {
-      return MatuDbResult(error: e.toString());
+      return MatuDbResult(error: _friendlyError(e));
     }
   }
 
@@ -201,7 +207,7 @@ class MatuDbClient {
       final uri = Uri.parse('${_dataUrl(table)}?apikey=${MatuDbConfig.apiKey}');
       final response = await http.post(
         uri,
-        headers: _headers(withAuth: true),
+        headers: _headers(),
         body: jsonEncode(rows.length == 1 ? rows.first : rows),
       );
 
@@ -227,7 +233,54 @@ class MatuDbClient {
 
       return const MatuDbResult(data: []);
     } catch (e) {
-      return MatuDbResult(error: e.toString());
+      return MatuDbResult(error: _friendlyError(e));
+    }
+  }
+
+  Future<MatuDbResult<List<Map<String, dynamic>>>> select(
+    String table, {
+    Map<String, String> eqFilters = const {},
+    String orderBy = 'created_at',
+    bool ascending = false,
+    int limit = 50,
+  }) async {
+    if (!MatuDbConfig.isConfigured) {
+      return const MatuDbResult(error: 'MatuDB no está configurado.');
+    }
+
+    try {
+      final params = <String, String>{
+        'apikey': MatuDbConfig.apiKey,
+        'order': '$orderBy.${ascending ? 'asc' : 'desc'}',
+        'limit': '$limit',
+      };
+      for (final entry in eqFilters.entries) {
+        params[entry.key] = 'eq.${entry.value}';
+      }
+
+      final uri = Uri.parse(_dataUrl(table)).replace(queryParameters: params);
+      final response = await http.get(uri, headers: _headers());
+
+      final body = _decodeBody(response.body);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return MatuDbResult(
+          error: body['message'] as String? ?? 'Error al consultar datos',
+        );
+      }
+
+      final data = body['data'];
+      if (data is Map && data['rows'] is List) {
+        return MatuDbResult(
+          data: (data['rows'] as List).cast<Map<String, dynamic>>(),
+        );
+      }
+      if (data is List) {
+        return MatuDbResult(data: data.cast<Map<String, dynamic>>());
+      }
+
+      return const MatuDbResult(data: []);
+    } catch (e) {
+      return MatuDbResult(error: _friendlyError(e));
     }
   }
 
@@ -239,5 +292,17 @@ class MatuDbClient {
       if (decoded is Map) return decoded.cast<String, dynamic>();
     } catch (_) {}
     return {'message': raw};
+  }
+
+  String _friendlyError(Object error) {
+    final raw = error.toString();
+    if (raw.contains('Failed to fetch') ||
+        raw.contains('ClientException') ||
+        raw.contains('SocketException') ||
+        raw.contains('Connection refused')) {
+      return 'No se pudo conectar con MatuDB. Verifica que MATUDB_URL '
+          'apunte a tu servidor (actual: ${MatuDbConfig.url}).';
+    }
+    return raw;
   }
 }

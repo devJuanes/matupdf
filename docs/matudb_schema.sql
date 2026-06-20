@@ -1,12 +1,9 @@
 -- =============================================================================
 -- MatuPDF — schema completo para MatuDB (PostgreSQL)
--- Ejecutar TODO este script en tu instancia MatuDB (SQL editor o db.rpc).
--- Es idempotente: se puede correr varias veces sin romper nada.
+-- Ejecutar TODO este script en tu instancia MatuDB.
 -- =============================================================================
 
--- -----------------------------------------------------------------------------
--- 1. Tabla: mensajes de contacto
--- -----------------------------------------------------------------------------
+-- 1. Mensajes de contacto
 CREATE TABLE IF NOT EXISTS contact_messages (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
@@ -17,14 +14,11 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Columnas por si la tabla ya existía con menos campos
 ALTER TABLE contact_messages ADD COLUMN IF NOT EXISTS subject TEXT;
 ALTER TABLE contact_messages ADD COLUMN IF NOT EXISTS user_id TEXT;
 ALTER TABLE contact_messages ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW();
 
--- -----------------------------------------------------------------------------
--- 2. Tabla: combinaciones / descargas de PDF
--- -----------------------------------------------------------------------------
+-- 2. Combinaciones / descargas de PDF
 CREATE TABLE IF NOT EXISTS pdf_downloads (
   id SERIAL PRIMARY KEY,
   user_id TEXT,
@@ -32,25 +26,27 @@ CREATE TABLE IF NOT EXISTS pdf_downloads (
   event_type TEXT NOT NULL DEFAULT 'merge',
   file_count INTEGER NOT NULL DEFAULT 1,
   file_names TEXT,
+  output_name TEXT,
+  storage_path TEXT,
+  file_url TEXT,
   platform TEXT DEFAULT 'web',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Migración: tablas creadas antes sin event_type u otras columnas
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS user_id TEXT;
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS guest_id TEXT;
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS event_type TEXT NOT NULL DEFAULT 'merge';
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS file_count INTEGER NOT NULL DEFAULT 1;
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS file_names TEXT;
+ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS output_name TEXT;
+ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS storage_path TEXT;
+ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS file_url TEXT;
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS platform TEXT DEFAULT 'web';
 ALTER TABLE pdf_downloads ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW();
 
--- Asegurar default en filas existentes (por si event_type quedó NULL)
 UPDATE pdf_downloads SET event_type = 'merge' WHERE event_type IS NULL;
 
--- -----------------------------------------------------------------------------
 -- 3. Índices
--- -----------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_pdf_downloads_user ON pdf_downloads(user_id);
 CREATE INDEX IF NOT EXISTS idx_pdf_downloads_guest ON pdf_downloads(guest_id);
 CREATE INDEX IF NOT EXISTS idx_pdf_downloads_event ON pdf_downloads(event_type);
