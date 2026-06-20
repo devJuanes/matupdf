@@ -15,7 +15,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="googlebot" content="index, follow">
   <meta name="theme-color" content="#E53935">
-  <link rel="canonical" href="https://matupdf.com/">
+  <link rel="canonical" href="https://matupdf.matubyte.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -23,15 +23,15 @@
   <meta property="og:site_name" content="MatuPDF">
   <meta property="og:title" content="MatuPDF — Combinar PDFs online gratis">
   <meta property="og:description" content="Herramienta 100% gratuita para unir PDFs en el navegador. Sin registro, sin límites y procesamiento local privado.">
-  <meta property="og:url" content="https://matupdf.com/">
-  <meta property="og:image" content="https://matupdf.com/icons/Icon-512.png">
+  <meta property="og:url" content="https://matupdf.matubyte.com/">
+  <meta property="og:image" content="https://matupdf.matubyte.com/icons/Icon-512.png">
   <meta property="og:image:alt" content="MatuPDF — Combinar PDFs gratis">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MatuPDF — Combinar PDFs online gratis">
   <meta name="twitter:description" content="Une PDFs gratis, sin registro y sin subir tus archivos a servidores. 100% privado.">
-  <meta name="twitter:image" content="https://matupdf.com/icons/Icon-512.png">
+  <meta name="twitter:image" content="https://matupdf.matubyte.com/icons/Icon-512.png">
 
   <!-- PWA -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -47,7 +47,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "MatuPDF",
-    "url": "https://matupdf.com/",
+    "url": "https://matupdf.matubyte.com/",
     "description": "Herramienta online gratuita para combinar y unir archivos PDF en el navegador, sin registro.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web, Android",
@@ -99,10 +99,22 @@
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    // pdf.js expone pdfjsLib; nuestros helpers esperan pdfjs-dist/build/pdf
+    window['pdfjs-dist/build/pdf'] = window.pdfjsLib;
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
   <script src="pdf_preview_helper.js"></script>
   <script src="pdf_rotation_helper.js"></script>
+  <script>
+    window.addEventListener('error', function (event) {
+      console.error('MatuPDF boot error:', event.error || event.message);
+    });
+    window.addEventListener('unhandledrejection', function (event) {
+      console.error('MatuPDF unhandled rejection:', event.reason);
+    });
+  </script>
 </head>
 <body>
   <noscript>

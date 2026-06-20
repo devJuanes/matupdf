@@ -8,7 +8,7 @@ class AppConstants {
       'Sin registro, sin límites ocultos y con procesamiento local en tu dispositivo.';
 
   // SEO — actualiza la URL al desplegar en producción
-  static const String siteUrl = 'https://matupdf.com';
+  static const String siteUrl = 'https://matupdf.matubyte.com';
   static const String seoTitle =
       'MatuPDF — Combinar PDFs online gratis | Sin registro';
   static const String seoDescription =

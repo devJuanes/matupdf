@@ -46,3 +46,6 @@ app.*.map.json
 
 # MatuDB credentials (local only)
 lib/core/matudb/matudb_secrets.dart
+
+# Deploy secrets (local only)
+deploy/deploy.env

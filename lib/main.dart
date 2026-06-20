@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'core/constants/app_constants.dart';
@@ -11,9 +13,29 @@ import 'theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+    if (kDebugMode) {
+      debugPrint('FlutterError: ${details.exceptionAsString()}');
+    }
+  };
+
+  GoogleFonts.config.allowRuntimeFetching = true;
+
   usePathUrlStrategy();
-  final authController = AuthController();
-  await authController.initialize();
+
+  late final AuthController authController;
+  try {
+    authController = AuthController();
+    await authController.initialize();
+  } catch (e, st) {
+    if (kDebugMode) {
+      debugPrint('Auth init failed: $e\n$st');
+    }
+    authController = AuthController();
+  }
+
   runApp(MatuPdfApp(authController: authController));
 }
 

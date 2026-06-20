@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://matupdf.com/sitemap.xml
+Sitemap: https://matupdf.matubyte.com/sitemap.xml

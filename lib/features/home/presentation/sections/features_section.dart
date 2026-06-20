@@ -42,12 +42,6 @@ class FeaturesSection extends StatelessWidget {
           'Tus documentos nunca salen de tu dispositivo. Privacidad total garantizada.',
     ),
     (
-      icon: Icons.phone_android_rounded,
-      title: 'Compatible con móvil',
-      description:
-          'Diseño responsive que funciona perfectamente en desktop, tablet y smartphone.',
-    ),
-    (
       icon: Icons.all_inclusive_rounded,
       title: 'Combinaciones ilimitadas',
       description:
