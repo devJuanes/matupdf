@@ -20,7 +20,10 @@ if (!url || !projectId || !apiKey) {
   process.exit(1);
 }
 
-const sqlFile = resolve(root, 'docs/matudb_schema.sql');
+const fileArg = process.argv[2];
+const sqlFile = fileArg
+  ? resolve(fileArg)
+  : resolve(root, 'docs/matudb_schema.sql');
 const sql = readFileSync(sqlFile, 'utf8').replace(/--[^\n]*/g, '');
 
 const statements = sql
