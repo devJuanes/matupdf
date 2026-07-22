@@ -31,7 +31,7 @@ class PayMatuByteService {
         'currency': 'COP',
         'description':
             description ?? 'Apoyo voluntario a ${AppConstants.appName}',
-        'returnUrl': '${AppConstants.siteUrl}/combinar?tip=thanks',
+        'returnUrl': '${AppConstants.siteUrl}/?tip=thanks',
       }),
     );
 

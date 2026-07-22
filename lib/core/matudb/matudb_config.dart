@@ -24,4 +24,5 @@ class MatuDbConfig {
 
   static const String tableContacts = 'contact_messages';
   static const String tableDownloads = 'pdf_downloads';
+  static const String tableDonations = 'voluntary_donations';
 }

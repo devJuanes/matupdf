@@ -284,6 +284,45 @@ class MatuDbClient {
     }
   }
 
+  Future<MatuDbResult<List<Map<String, dynamic>>>> update(
+    String table,
+    Map<String, dynamic> data, {
+    required Map<String, String> filters,
+  }) async {
+    if (!MatuDbConfig.isConfigured) {
+      return const MatuDbResult(error: 'MatuDB no está configurado.');
+    }
+
+    try {
+      final uri = Uri.parse('${_dataUrl(table)}?apikey=${MatuDbConfig.apiKey}');
+      final response = await http.put(
+        uri,
+        headers: _headers(),
+        body: jsonEncode({
+          'data': data,
+          'filters': filters.map(
+            (key, value) => MapEntry(key, 'eq.$value'),
+          ),
+        }),
+      );
+
+      final body = _decodeBody(response.body);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return MatuDbResult(
+          error: body['message'] as String? ?? 'Error al actualizar datos',
+        );
+      }
+
+      final rows = body['data'] is Map ? (body['data'] as Map)['rows'] : null;
+      if (rows is List) {
+        return MatuDbResult(data: rows.cast<Map<String, dynamic>>());
+      }
+      return const MatuDbResult(data: []);
+    } catch (e) {
+      return MatuDbResult(error: _friendlyError(e));
+    }
+  }
+
   Map<String, dynamic> _decodeBody(String raw) {
     if (raw.isEmpty) return {};
     try {

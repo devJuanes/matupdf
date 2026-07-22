@@ -10,6 +10,7 @@ import 'core/theme/theme_notifier.dart';
 import 'features/auth/presentation/controllers/auth_controller.dart';
 import 'features/edit/presentation/controllers/edit_controller.dart';
 import 'features/home/presentation/controllers/merge_controller.dart';
+import 'features/support/tip_return_scope.dart';
 import 'theme/app_theme.dart';
 
 Future<void> main() async {
@@ -82,6 +83,9 @@ class _MatuPdfAppState extends State<MatuPdfApp> {
             theme: AppTheme.light(),
             darkTheme: AppTheme.dark(),
             routerConfig: AppRouter.router,
+            builder: (context, child) => TipReturnScope(
+              child: child ?? const SizedBox.shrink(),
+            ),
           );
         },
       ),

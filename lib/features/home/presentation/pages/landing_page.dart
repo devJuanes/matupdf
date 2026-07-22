@@ -11,6 +11,7 @@ import '../sections/faq_section.dart';
 import '../sections/features_section.dart';
 import '../sections/hero_section.dart';
 import '../sections/how_it_works_section.dart';
+import '../sections/support_section.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -43,6 +44,7 @@ class LandingPage extends StatelessWidget {
           const SliverToBoxAdapter(child: BenefitsSection()),
           const SliverToBoxAdapter(child: HowItWorksSection()),
           const SliverToBoxAdapter(child: FaqSection()),
+          const SliverToBoxAdapter(child: SupportSection()),
           const SliverToBoxAdapter(child: CorporateFooter()),
         ],
       ),

@@ -4,6 +4,7 @@ import '../../../../core/utils/responsive.dart';
 import '../../../../shared/layout/content_container.dart';
 import '../../../../theme/app_colors.dart';
 import '../../../../widgets/animated_fade_in.dart';
+import '../../../support/voluntary_tip_button.dart';
 import '../../../../widgets/app_button.dart';
 import '../widgets/hero_illustration.dart';
 
@@ -164,6 +165,10 @@ class HeroSection extends StatelessWidget {
                 icon: Icons.swipe_down_alt_rounded,
                 variant: AppButtonVariant.outline,
                 onPressed: onScrollToMerge,
+              ),
+              VoluntaryTipButton(
+                compact: isMobile,
+                label: isMobile ? 'Invítame un café' : 'Apoyar con un café',
               ),
             ],
           ),
