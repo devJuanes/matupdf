@@ -30,6 +30,12 @@ class FaqSection extends StatelessWidget {
           'La experiencia se adapta perfectamente a cualquier pantalla.',
     ),
     (
+      question: '¿Puedo editar un PDF online?',
+      answer:
+          'Sí. En la sección Editar PDF puedes añadir texto, firma, imágenes y anotaciones '
+          'directamente en el navegador, sin instalar programas.',
+    ),
+    (
       question: '¿Puedo combinar múltiples PDFs?',
       answer:
           'Por supuesto. Puedes seleccionar tantos archivos PDF como necesites, '

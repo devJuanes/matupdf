@@ -12,10 +12,12 @@ class HeroSection extends StatelessWidget {
     super.key,
     required this.onSelectPdfs,
     required this.onScrollToMerge,
+    this.onEditPdf,
   });
 
   final VoidCallback onSelectPdfs;
   final VoidCallback onScrollToMerge;
+  final VoidCallback? onEditPdf;
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +152,13 @@ class HeroSection extends StatelessWidget {
                 icon: Icons.upload_file_rounded,
                 onPressed: onSelectPdfs,
               ),
+              if (onEditPdf != null)
+                AppButton(
+                  label: 'Editar PDF',
+                  icon: Icons.edit_document,
+                  variant: AppButtonVariant.secondary,
+                  onPressed: onEditPdf,
+                ),
               AppButton(
                 label: isMobile ? 'Ver herramienta' : 'Arrastra archivos aquí',
                 icon: Icons.swipe_down_alt_rounded,

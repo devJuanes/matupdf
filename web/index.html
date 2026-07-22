@@ -8,29 +8,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO principal -->
-  <title>MatuPDF — Combinar PDFs online gratis | Sin registro</title>
-  <meta name="description" content="Une y combina archivos PDF gratis en segundos. Herramienta online sin registro, sin marcas de agua y 100% privada. Procesamiento local en tu navegador.">
-  <meta name="keywords" content="combinar pdf, unir pdf, merge pdf, combinar pdf online gratis, unir pdf gratis, juntar pdf, combinar documentos pdf, pdf merger gratis">
+  <title>MatuPDF — Combinar y editar PDFs online gratis | Sin registro</title>
+  <meta name="description" content="Combina, une y edita PDFs gratis en el navegador. Sin registro, sin marcas de agua y procesamiento 100% local. Une archivos, rota páginas, firma y anota documentos.">
+  <meta name="keywords" content="combinar pdf, unir pdf, editar pdf, merge pdf, combinar pdf online gratis, unir pdf gratis, editar pdf online, firmar pdf, rotar pdf, juntar pdf, editor pdf gratis, matupdf">
   <meta name="author" content="MatuByte S.A.S.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
   <meta name="theme-color" content="#E53935">
+  <meta name="application-name" content="MatuPDF">
+  <meta name="format-detection" content="telephone=no">
   <link rel="canonical" href="https://matupdf.matubyte.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
+  <meta property="og:locale:alternate" content="es_ES">
   <meta property="og:site_name" content="MatuPDF">
-  <meta property="og:title" content="MatuPDF — Combinar PDFs online gratis">
-  <meta property="og:description" content="Herramienta 100% gratuita para unir PDFs en el navegador. Sin registro, sin límites y procesamiento local privado.">
+  <meta property="og:title" content="MatuPDF — Combinar y editar PDFs online gratis">
+  <meta property="og:description" content="Herramienta gratuita para unir y editar PDFs en el navegador. Sin registro, sin límites y procesamiento local privado.">
   <meta property="og:url" content="https://matupdf.matubyte.com/">
   <meta property="og:image" content="https://matupdf.matubyte.com/icons/logo.png">
-  <meta property="og:image:alt" content="MatuPDF — Logo oficial">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="MatuPDF — Herramientas PDF online gratis">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MatuPDF — Combinar PDFs online gratis">
-  <meta name="twitter:description" content="Une PDFs gratis, sin registro y sin subir tus archivos a servidores. 100% privado.">
+  <meta name="twitter:title" content="MatuPDF — Combinar y editar PDFs online gratis">
+  <meta name="twitter:description" content="Une y edita PDFs gratis, sin registro y sin subir tus archivos a servidores. 100% privado.">
   <meta name="twitter:image" content="https://matupdf.matubyte.com/icons/logo.png">
 
   <!-- PWA -->
@@ -41,16 +46,18 @@
   <link rel="icon" type="image/png" href="icons/logo.png">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Datos estructurados -->
+  <!-- Datos estructurados: aplicación -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "MatuPDF",
+    "alternateName": "Matu PDF",
     "url": "https://matupdf.matubyte.com/",
-    "description": "Herramienta online gratuita para combinar y unir archivos PDF en el navegador, sin registro.",
+    "description": "Herramienta online gratuita para combinar, unir y editar archivos PDF en el navegador, sin registro.",
     "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web, Android",
+    "operatingSystem": "Web, Android, Windows, macOS, Linux",
+    "browserRequirements": "Requires JavaScript",
     "inLanguage": "es",
     "isAccessibleForFree": true,
     "offers": {
@@ -60,16 +67,81 @@
       "description": "Uso gratuito ilimitado"
     },
     "featureList": [
-      "Combinar PDFs gratis",
+      "Combinar y unir PDFs gratis",
+      "Editar PDF: texto, firma e imágenes",
+      "Rotar y reordenar páginas",
       "Sin registro",
-      "Vista previa y rotación",
       "Procesamiento local privado"
     ],
     "author": {
       "@type": "Organization",
       "name": "MatuByte S.A.S.",
       "url": "https://matubyte.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MatuByte S.A.S.",
+      "url": "https://matubyte.com"
     }
+  }
+  </script>
+
+  <!-- Datos estructurados: sitio web -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MatuPDF",
+    "url": "https://matupdf.matubyte.com/",
+    "description": "Combinar y editar PDFs online gratis",
+    "inLanguage": "es",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MatuByte S.A.S.",
+      "url": "https://matubyte.com"
+    }
+  }
+  </script>
+
+  <!-- Datos estructurados: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Es gratis combinar PDFs con MatuPDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, MatuPDF es completamente gratuito. Puedes combinar y editar tantos PDFs como necesites sin pagar ni suscribirte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Mis archivos PDF están seguros?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Todo el procesamiento ocurre localmente en tu navegador. Tus documentos no se suben a servidores externos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo editar un PDF online sin instalar programas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. MatuPDF permite añadir texto, firma, imágenes y anotaciones directamente en el navegador, sin instalar software."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Funciona en móvil y escritorio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. MatuPDF está optimizado para móviles, tablets y computadoras de escritorio."
+        }
+      }
+    ]
   }
   </script>
 
@@ -78,35 +150,46 @@
       margin: 0;
       background-color: #F8FAFC;
     }
-    .seo-fallback {
+    .seo-crawlable {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .seo-crawlable:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
       max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 24px;
+      padding: 24px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       color: #111827;
       line-height: 1.6;
     }
-    .seo-fallback h1 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .seo-fallback p {
-      color: #64748B;
-    }
-    .seo-fallback strong {
-      color: #E53935;
-    }
+    .seo-crawlable a { color: #E53935; }
+    .seo-crawlable h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .seo-crawlable h2 { font-size: 1.15rem; margin-top: 1.25rem; }
+    .seo-crawlable p, .seo-crawlable li { color: #64748B; font-size: 0.95rem; }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script>
-    // pdf.js expone pdfjsLib; nuestros helpers esperan pdfjs-dist/build/pdf
     window['pdfjs-dist/build/pdf'] = window.pdfjsLib;
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
   <script src="pdf_preview_helper.js"></script>
   <script src="pdf_rotation_helper.js"></script>
+  <script src="pdf_edit_helper.js"></script>
   <script>
     window.addEventListener('error', function (event) {
       console.error('MatuPDF boot error:', event.error || event.message);
@@ -117,16 +200,43 @@
   </script>
 </head>
 <body>
+  <main class="seo-crawlable" id="seo-content" aria-label="Información de MatuPDF">
+    <h1>MatuPDF — Combinar y editar PDFs online gratis</h1>
+    <p>
+      <strong>MatuPDF</strong> es una herramienta gratuita de MatuByte para
+      <strong>combinar PDFs</strong>, <strong>unir documentos</strong> y
+      <strong>editar PDFs online</strong> sin registro. Todo el procesamiento es local en tu navegador.
+    </p>
+
+    <h2>Herramientas PDF gratuitas</h2>
+    <ul>
+      <li><a href="https://matupdf.matubyte.com/combinar">Combinar PDFs online</a> — une varios archivos en uno solo, reordena y rota páginas.</li>
+      <li><a href="https://matupdf.matubyte.com/editar">Editar PDF online</a> — añade texto, firma, imágenes y anotaciones.</li>
+      <li><a href="https://matupdf.matubyte.com/contacto">Contacto y soporte</a></li>
+    </ul>
+
+    <h2>¿Por qué usar MatuPDF?</h2>
+    <ul>
+      <li>100% gratis, sin marcas de agua</li>
+      <li>Sin registro obligatorio</li>
+      <li>Privacidad total: tus archivos no salen de tu dispositivo</li>
+      <li>Funciona en móvil, tablet y escritorio</li>
+    </ul>
+
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Es gratis?</strong> Sí, uso ilimitado sin costo.</p>
+    <p><strong>¿Es seguro?</strong> Sí, el procesamiento es local en tu navegador.</p>
+    <p><strong>¿Puedo editar PDFs?</strong> Sí, en la herramienta de edición online.</p>
+
+    <p>Desarrollado por <a href="https://matubyte.com">MatuByte S.A.S.</a> — Cali, Colombia.</p>
+  </main>
+
   <noscript>
-    <main class="seo-fallback">
-      <h1>MatuPDF — Combinar PDFs online gratis</h1>
-      <p>
-        <strong>100% gratis</strong>, sin registro y sin marcas de agua.
-        Une varios archivos PDF en uno solo desde tu navegador.
-        Tus documentos se procesan localmente y no se suben a servidores externos.
-      </p>
-      <p>Desarrollado por MatuByte S.A.S.</p>
-    </main>
+    <div style="max-width:720px;margin:0 auto;padding:48px 24px;font-family:system-ui,sans-serif;color:#111827;line-height:1.6">
+      <h1>MatuPDF — Combinar y editar PDFs online gratis</h1>
+      <p>Habilita JavaScript para usar MatuPDF. Combina y edita PDFs gratis, sin registro.</p>
+      <p><a href="https://matupdf.matubyte.com/combinar">Combinar PDFs</a> · <a href="https://matupdf.matubyte.com/editar">Editar PDF</a></p>
+    </div>
   </noscript>
   <script src="flutter_bootstrap.js" async></script>
 </body>

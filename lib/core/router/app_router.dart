@@ -3,17 +3,23 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/pages/auth_page.dart';
 import '../../features/contact/presentation/pages/contact_page.dart';
+import '../../features/edit/presentation/pages/edit_page.dart';
 import '../../features/home/presentation/pages/landing_page.dart';
 import '../../features/home/presentation/pages/merge_page.dart';
 import '../../features/legal/presentation/pages/privacy_policy_page.dart';
 import '../../features/legal/presentation/pages/terms_of_service_page.dart';
 import '../constants/app_constants.dart';
+import '../seo/seo_updater.dart';
 
 class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.home,
+    redirect: (context, state) {
+      SeoUpdater.applyForPath(state.uri.path);
+      return null;
+    },
     routes: [
       GoRoute(
         path: AppRoutes.home,
@@ -25,6 +31,12 @@ class AppRouter {
         path: AppRoutes.merge,
         pageBuilder: (context, state) => const NoTransitionPage(
           child: MergePage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.edit,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: EditPage(),
         ),
       ),
       GoRoute(

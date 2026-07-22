@@ -49,6 +49,14 @@ class AppNav extends StatelessWidget {
         const AuthNavButton(),
         const SizedBox(width: 8),
         AppButton(
+          label: 'Editar PDF',
+          icon: Icons.edit_document,
+          compact: true,
+          variant: AppButtonVariant.outline,
+          onPressed: () => context.go(AppRoutes.edit),
+        ),
+        const SizedBox(width: 8),
+        AppButton(
           label: 'Combinar PDFs',
           icon: Icons.merge_type_rounded,
           compact: true,

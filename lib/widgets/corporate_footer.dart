@@ -172,6 +172,7 @@ class _LinksColumn extends StatelessWidget {
             ('Cómo funciona', null),
             ('Preguntas frecuentes', null),
             ('Combinar PDFs', AppRoutes.merge),
+            ('Editar PDF', AppRoutes.edit),
           ]
         : [
             ('Política de privacidad', AppRoutes.privacy),

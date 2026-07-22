@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /cuenta
 
 Sitemap: https://matupdf.matubyte.com/sitemap.xml

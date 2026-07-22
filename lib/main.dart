@@ -8,6 +8,7 @@ import 'core/constants/app_constants.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/theme_notifier.dart';
 import 'features/auth/presentation/controllers/auth_controller.dart';
+import 'features/edit/presentation/controllers/edit_controller.dart';
 import 'features/home/presentation/controllers/merge_controller.dart';
 import 'theme/app_theme.dart';
 
@@ -70,6 +71,7 @@ class _MatuPdfAppState extends State<MatuPdfApp> {
         ChangeNotifierProvider(create: (_) => ThemeNotifier()),
         ChangeNotifierProvider.value(value: _authController),
         ChangeNotifierProvider(create: (_) => MergeController()),
+        ChangeNotifierProvider(create: (_) => EditController()),
       ],
       child: Consumer<ThemeNotifier>(
         builder: (context, themeNotifier, _) {

@@ -36,6 +36,7 @@ class LandingPage extends StatelessWidget {
             child: HeroSection(
               onSelectPdfs: () => _goToMerge(context),
               onScrollToMerge: () => _goToMerge(context),
+              onEditPdf: () => context.go(AppRoutes.edit),
             ),
           ),
           const SliverToBoxAdapter(child: FeaturesSection()),

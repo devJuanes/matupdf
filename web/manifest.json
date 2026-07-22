@@ -1,15 +1,15 @@
 {
-  "name": "MatuPDF — Combinar PDFs gratis",
+  "name": "MatuPDF — Combinar y editar PDFs gratis",
   "short_name": "MatuPDF",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#F8FAFC",
   "theme_color": "#E53935",
-  "description": "Combina y une archivos PDF gratis en el navegador. Sin registro, 100% privado y procesamiento local.",
+  "description": "Combina, une y edita archivos PDF gratis en el navegador. Sin registro, 100% privado y procesamiento local.",
   "lang": "es",
   "orientation": "any",
   "prefer_related_applications": false,
-  "categories": ["utilities", "productivity"],
+  "categories": ["utilities", "productivity", "business"],
   "icons": [
     {
       "src": "icons/logo.png",

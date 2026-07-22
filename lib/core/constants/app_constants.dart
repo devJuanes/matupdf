@@ -2,21 +2,22 @@ class AppConstants {
   AppConstants._();
 
   static const String appName = 'MatuPDF';
-  static const String appTagline = 'Combina PDFs online gratis';
+  static const String appTagline = 'Combina y edita PDFs online gratis';
   static const String appDescription =
-      'Herramienta 100% gratuita para combinar documentos PDF en el navegador. '
+      'Herramienta 100% gratuita para combinar y editar PDFs en el navegador. '
       'Sin registro, sin límites ocultos y con procesamiento local en tu dispositivo.';
 
   // SEO — actualiza la URL al desplegar en producción
   static const String siteUrl = 'https://matupdf.matubyte.com';
   static const String seoTitle =
-      'MatuPDF — Combinar PDFs online gratis | Sin registro';
+      'MatuPDF — Combinar y editar PDFs online gratis | Sin registro';
   static const String seoDescription =
-      'Une y combina archivos PDF gratis en segundos. Herramienta online sin registro, '
-      'sin marcas de agua y 100% privada. Procesamiento local en tu navegador.';
+      'Combina, une y edita PDFs gratis en segundos. Sin registro, sin marcas de agua '
+      'y 100% privado. Procesamiento local en tu navegador.';
   static const String seoKeywords =
-      'combinar pdf, unir pdf, merge pdf, combinar pdf online gratis, '
-      'unir pdf gratis, juntar pdf, combinar documentos pdf, pdf merger gratis';
+      'combinar pdf, unir pdf, editar pdf, merge pdf, combinar pdf online gratis, '
+      'unir pdf gratis, editar pdf online, firmar pdf, rotar pdf, juntar pdf, '
+      'combinar documentos pdf, editor pdf gratis';
 
   // MatuByte S.A.S. — empresa desarrolladora
   static const String companyName = 'MatuByte';
@@ -52,6 +53,7 @@ class AppRoutes {
 
   static const String home = '/';
   static const String merge = '/combinar';
+  static const String edit = '/editar';
   static const String account = '/cuenta';
   static const String contact = '/contacto';
   static const String privacy = '/privacidad';
