@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/constants/app_constants.dart';
 import '../core/utils/responsive.dart';
 import '../shared/layout/content_container.dart';
+import '../features/support/voluntary_tip_link.dart';
 import '../theme/app_colors.dart';
 import 'logo.dart';
 
@@ -58,6 +59,8 @@ class CorporateFooter extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
+              const VoluntaryTipLink(lightOnDark: true, compact: true),
+              const SizedBox(height: 8),
               _BottomBar(isMobile: isMobile),
             ],
           ),

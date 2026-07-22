@@ -75,6 +75,10 @@ def build_locally() -> None:
                 defines += ["--dart-define=MATUDB_PROJECT_ID=" + val]
             elif key == "MATUDB_API_KEY":
                 defines += ["--dart-define=MATUDB_API_KEY=" + val]
+            elif key == "PAYMATUBYTE_URL":
+                defines += ["--dart-define=PAYMATUBYTE_URL=" + val]
+            elif key == "PAYMATUBYTE_API_KEY":
+                defines += ["--dart-define=PAYMATUBYTE_API_KEY=" + val]
 
     print("\n==> Flutter build web (release)...")
     subprocess.run(

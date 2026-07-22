@@ -49,3 +49,6 @@ lib/core/matudb/matudb_secrets.dart
 
 # Deploy secrets (local only)
 deploy/deploy.env
+
+# Scripts tooling
+scripts/node_modules/

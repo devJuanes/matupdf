@@ -14,6 +14,7 @@ import '../../../auth/presentation/widgets/merge_auth_gate_dialog.dart';
 import '../../data/merge_history_repository.dart';
 import 'file_upload_overlay.dart';
 import 'merge_progress_dialog.dart';
+import 'pdf_merge_mobile_file_list.dart';
 import 'pdf_merge_toolbar.dart';
 import 'pdf_preview_card.dart';
 import 'pdf_zoom_dialog.dart';
@@ -302,13 +303,29 @@ class _FilesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+
+    if (isMobile) {
+      return PdfMergeMobileFileList(
+        files: files,
+        onInsertAt: onInsertAt,
+        onRotate: onRotate,
+        onZoom: onZoom,
+        onDelete: onDelete,
+        onDuplicate: onDuplicate,
+        onReorder: onReorder,
+      );
+    }
+
     return LayoutBuilder(
       builder: (context, constraints) {
-        const cardWidth = 156.0;
+        const minCardWidth = 140.0;
         const spacing = 12.0;
-        final columns = ((constraints.maxWidth + spacing) / (cardWidth + spacing))
+        final columns = ((constraints.maxWidth + spacing) / (minCardWidth + spacing))
             .floor()
-            .clamp(1, 8);
+            .clamp(2, 8);
+        final cellWidth =
+            (constraints.maxWidth - spacing * (columns - 1)) / columns;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,12 +355,11 @@ class _FilesGrid extends StatelessWidget {
               children: [
                 for (var i = 0; i < files.length; i++)
                   SizedBox(
-                    width:
-                        (constraints.maxWidth - spacing * (columns - 1)) / columns,
+                    width: cellWidth,
                     child: _DraggablePreviewCard(
                       file: files[i],
                       index: i,
-                      cardWidth: cardWidth,
+                      cardWidth: cellWidth,
                       onRotate: () => onRotate(files[i].id),
                       onZoom: () => onZoom(files[i]),
                       onDelete: () => onDelete(files[i].id),
@@ -352,8 +368,7 @@ class _FilesGrid extends StatelessWidget {
                     ),
                   ),
                 SizedBox(
-                  width:
-                      (constraints.maxWidth - spacing * (columns - 1)) / columns,
+                  width: cellWidth,
                   child: _AddMoreCard(
                     onTap: () => onInsertAt(insertAt: files.length),
                     onReorderToEnd: files.isEmpty ? null : onReorderToEnd,

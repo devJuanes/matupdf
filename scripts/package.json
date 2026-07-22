@@ -1,0 +1,8 @@
+{
+  "name": "matupdf-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@devjuanes/matuclient": "^2.2.3"
+  }
+}
