@@ -27,9 +27,9 @@ def run(client: paramiko.SSHClient, cmd: str) -> tuple[int, str, str]:
     err = stderr.read().decode("utf-8", errors="replace")
     code = stdout.channel.recv_exit_status()
     if out.strip():
-        print(out.rstrip())
+        sys.stdout.buffer.write(out.rstrip().encode("utf-8", errors="replace") + b"\n")
     if err.strip():
-        print(err.rstrip(), file=sys.stderr)
+        sys.stderr.buffer.write(err.rstrip().encode("utf-8", errors="replace") + b"\n")
     return code, out, err
 
 
