@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <rect width="128" height="128" rx="24" fill="#060606"/>
+  <path d="M40 24H72L96 48V96C96 100.418 92.418 104 88 104H40C35.5817 104 32 100.418 32 96V32C32 27.5817 35.5817 24 40 24Z" fill="#1a1a1a" stroke="#22d3ee" stroke-width="3"/>
+  <path d="M72 24V48H96" fill="#22d3ee" opacity="0.3"/>
+  <text x="64" y="78" text-anchor="middle" fill="#ef4444" font-family="system-ui,sans-serif" font-size="22" font-weight="800">PDF</text>
+</svg>
